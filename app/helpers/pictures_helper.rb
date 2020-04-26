@@ -6,6 +6,4 @@ module PicturesHelper
       picture_path
     end
   end
-
-  mount_uploader :image, ImageUploader
 end
