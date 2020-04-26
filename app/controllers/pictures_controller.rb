@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :prevent_wrong_user, only: [:edit, :update, :destroy]
 
   def index
     @pictures = Picture.all
@@ -64,4 +65,12 @@ class PicturesController < ApplicationController
   def set_picture
     @picture = Picture.find(params[:id])
   end
+
+  def prevent_wrong_user
+    @picture = Picture.find_by(id: params[:id])
+    if @picture.user_id != current_user.id
+      redirect_to pictures_path, notice: "権限がありません。"
+    end
+  end
+
 end
