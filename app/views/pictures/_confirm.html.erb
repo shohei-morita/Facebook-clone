@@ -1,0 +1,20 @@
+<%= form_with(model: @picture, url: choose_new_or_edit, local: true) do |f| %>
+  <% if @picture.errors.any? %>
+    <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @picture.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+  <%= f.submit "投稿する" %>
+  <%= f.submit "画像を削除する", name: "delete_image" %>
+<% end %>
+<%= link_to "記事一覧に戻る", pictures_path %>
