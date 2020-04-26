@@ -1,2 +1,24 @@
-<h1>Pictures#index</h1>
-<p>Find me in app/views/pictures/index.html.erb</p>
+<h1>投稿記事一覧</h1>
+
+<p><%= link_to "ブログを投稿する", new_picture_path %>
+<%= form_with(model: @picture, local: true) do |f| %>
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <th>記事</th>
+      <th>投稿者</th>
+      <th>画像サムネ</th>
+    </tr>
+    <% @pictures.each do |picture| %>
+    <tr>
+      <td><%= picture.title %></td>
+      <td><%= picture.content %></td>
+      <td><%= picture.user.name %></td>
+      <td><%= image_tag picture.image.url(:thumb) if picture.image.present? %></td>
+      <td><%= link_to "詳細", picture_path(picture.id) %></td>
+      <td><%= link_to "編集", edit_picture_path(picture.id) %></td>
+      <td><%= link_to "削除", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} %></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
