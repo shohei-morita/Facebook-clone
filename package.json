@@ -1,5 +1,9 @@
 {
   "name": "MimicBook",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "boostrap": "^1.0.0",
+    "bootstrap": "3",
+    "jquery": "^3.5.0"
+  }
 }

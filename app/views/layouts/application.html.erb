@@ -14,16 +14,12 @@
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <% if logged_in? %>
-      <%= link_to "Profile", user_path(current_user.id) %>
+      <%= link_to "Home", user_path(current_user.id) %>
       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
     <% else %>
       <%= link_to "Sign Up", new_user_path %>
       <%= link_to "Login", new_session_path %>
     <% end %>
-    <ul>
-      <li>test01@gmail.com</li>
-      <li>test02@gmail.com</li>
-    </ul>
     <%= yield %>
   </body>
 </html>

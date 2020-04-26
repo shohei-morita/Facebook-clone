@@ -3,7 +3,7 @@ class PicturesController < ApplicationController
   before_action :prevent_wrong_user, only: [:edit, :update, :destroy]
 
   def index
-    @pictures = Picture.all
+    @pictures = Picture.all.order("updated_at DESC")
     @picture = Picture.new
   end
 

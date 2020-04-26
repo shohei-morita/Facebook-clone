@@ -1,14 +1,12 @@
-<h1>投稿記事一覧</h1>
-<h2><%= current_user.name %>さん、ゆっくりしていってください</h2>
-
-<p><%= link_to "ブログを投稿する", new_picture_path %>
+<h1>記事一覧</h1>
+<h3><%= current_user.name %>さん、ゆっくりしていってね！</h3>
 
 <table>
   <tr>
-    <th>アイコン</th>
+    <th>Icon</th>
     <th>タイトル</th>
     <th>記事</th>
-    <th>投稿日</th>
+    <th>投稿日時</th>
     <th>投稿者</th>
   </tr>
   <% @pictures.each do |picture| %>
@@ -19,7 +17,7 @@
     <td><%= picture.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
     <td><%= picture.user.name %></td>
     <td><%= link_to "詳細", picture_path(picture.id) %></td>
-    <% if picture.user.id == @current_user.id %>
+    <% if picture.user.id == current_user.id %>
       <td><%= link_to "編集する", edit_picture_path(picture.id) %></td>
       <td><%= link_to "削除する", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} %></td>
     <% end %>

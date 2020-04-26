@@ -1,3 +1,4 @@
-<h1><%= @user.name %>のページ</h1>
-<p>メールアドレス:<%= @user.email %></p>
-<%= link_to "投稿一覧へ", pictures_path %>
+<h2><%= current_user.name %>さん、いらっしゃい</h2>
+<p><%= current_user.email %></p>
+
+<p><%= link_to "記事一覧へ", pictures_path %></p>
