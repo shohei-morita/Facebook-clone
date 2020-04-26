@@ -4,17 +4,19 @@
 <%= form_with(model: @picture, local: true) do |f| %>
   <table>
     <tr>
+      <th>アイコン</th>
       <th>タイトル</th>
       <th>記事</th>
+      <th>投稿日</th>
       <th>投稿者</th>
-      <th>サムネ</th>
     </tr>
     <% @pictures.each do |picture| %>
     <tr>
+      <td><%= image_tag picture.image.url(:thumb) if picture.image.present? %></td>
       <td><%= picture.title %></td>
       <td><%= picture.content %></td>
+      <td><%= picture.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
       <td><%= picture.user.name %></td>
-      <td><%= image_tag picture.image.url(:thumb) if picture.image.present? %></td>
       <td><%= link_to "詳細確認", picture_path(picture.id) %></td>
       <td><%= link_to "編集する", edit_picture_path(picture.id) %></td>
       <td><%= link_to "削除する", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} %></td>
