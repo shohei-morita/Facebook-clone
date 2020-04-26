@@ -1,4 +1,5 @@
 <h1>投稿記事一覧</h1>
+<h2><%= current_user.name %>さん、ゆっくりしていってください</h2>
 
 <p><%= link_to "ブログを投稿する", new_picture_path %>
 
@@ -17,9 +18,11 @@
     <td><%= picture.content %></td>
     <td><%= picture.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
     <td><%= picture.user.name %></td>
-    <td><%= link_to "詳細確認", picture_path(picture.id) %></td>
-    <td><%= link_to "編集する", edit_picture_path(picture.id) %></td>
-    <td><%= link_to "削除する", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} %></td>
+    <td><%= link_to "詳細", picture_path(picture.id) %></td>
+    <% if picture.user.id == @current_user.id %>
+      <td><%= link_to "編集する", edit_picture_path(picture.id) %></td>
+      <td><%= link_to "削除する", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>
