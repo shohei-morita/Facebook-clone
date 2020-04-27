@@ -72,7 +72,8 @@ class PicturesController < ApplicationController
   def prevent_wrong_user
     @picture = Picture.find_by(id: params[:id])
     if @picture.user_id != current_user.id
-      redirect_to pictures_path, notice: "権限がありません。"
+      redirect_to pictures_path,
+      flash[:danger] = "権限がありません。"
     end
   end
 

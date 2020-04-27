@@ -1,6 +1,6 @@
 <h3>Home</h3>
 
-<p>登録名:<%= current_user.name %></p>
-<p>メールアドレス:<%= current_user.email %></p>
+<p>登録名:<%= @user.name %></p>
+<p>メールアドレス:<%= @user.email %></p>
 
 <p><%= link_to "記事一覧へ", pictures_path, class:"btn btn-default" %></p>

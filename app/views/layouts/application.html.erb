@@ -20,6 +20,7 @@
           <li class="col-mid-1"><%= link_to "Sign Up", new_user_path %></li>
           <li class="col-mid-1"><%= link_to "Login", new_session_path %></li>
         <% end %>
+        </ul>
       </nav>
       <% flash.each do |key, value| %>
         <% if flash[:notice] %>
