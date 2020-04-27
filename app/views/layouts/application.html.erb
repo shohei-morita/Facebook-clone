@@ -8,18 +8,35 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-    <% if logged_in? %>
-      <%= link_to "Home", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "Sign Up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-    <% end %>
-    <%= yield %>
+    <div class="wrapper">
+    <div class="container-fluid">
+      <nav class="menu">
+        <ul class="row">
+        <% if logged_in? %>
+          <li class="col-md-1"><%= link_to "Home", user_path(current_user.id) %></li>
+          <li class="col-md-1"><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+        <% else %>
+          <li class="col-mid-1"><%= link_to "Sign Up", new_user_path %></li>
+          <li class="col-mid-1"><%= link_to "Login", new_session_path %></li>
+        <% end %>
+      </nav>
+      <% flash.each do |key, value| %>
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <%= content_tag(:div, value, class: "#{key}") %>
+          </div>
+        <% else %>
+          <div class="alert alert-danger">
+            <%= content_tag(:div, value, class: "#{key}") %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= yield %>
+      <footer>
+        <p>2020年04月 森田 祥平 制作</p>
+      </footer>
+      </div>
+    </div>
   </body>
 </html>

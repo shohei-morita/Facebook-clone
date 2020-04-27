@@ -1,9 +1,11 @@
-<h3>以下の内容で、投稿する</h3>
+<h3>以下の内容で、投稿しますか？</h3>
 <%= form_with(model: @picture, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
-  <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
-  <%= form.hidden_field :image_cache %>
-  <%= form.submit "投稿する" %>
-  <%= form.submit "戻る", name: "back" %>
+  <%= image_tag(@picture.image.url(:gallery)) if @picture.image && @picture.image.url %>
+  <p>タイトル:<%= @picture.title %></p>
+  <p>内容：<%= @picture.content %></p>
+  <%= form.hidden_field :image_cache, class: "image-size" %>
+  <%= form.submit "投稿する", class: "confirm-btn btn-primary" %>
+  <%= form.submit "戻る", name: "back", class: "confirm-btn btn-info" %>
 <% end %>

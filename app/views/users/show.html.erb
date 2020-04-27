@@ -1,4 +1,6 @@
-<h2><%= current_user.name %>さん、いらっしゃい</h2>
-<p><%= current_user.email %></p>
+<h3>Home</h3>
 
-<p><%= link_to "記事一覧へ", pictures_path %></p>
+<p>登録名:<%= current_user.name %></p>
+<p>メールアドレス:<%= current_user.email %></p>
+
+<p><%= link_to "記事一覧へ", pictures_path, class:"btn btn-default" %></p>

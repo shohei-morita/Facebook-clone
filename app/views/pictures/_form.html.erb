@@ -7,15 +7,22 @@
     <% end %>
     </ul>
   <% end %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-  <%= form.label :content %>
-  <%= form.text_field :content %>
-  <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
-  <%= form.file_field :image %>
-  <%= form.hidden_field :image_cache %>
-  <%= form.submit "投稿する" %>
-  <%= form.submit "画像を削除する", name: "delete_image" %>
-<% end %>
 
-<%= link_to "記事一覧に戻る", pictures_path %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_area :content, class: "form-control", rows:8 %>
+  </div>
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= image_tag(@picture.image.url(:gallery)) if @picture.image && @picture.image.url %>
+    <%= form.file_field :image , class: "btn btn-default"%>
+    <%= form.hidden_field :image_cache %>
+  </div>
+  <div class="form-group">
+    <%= form.submit "投稿する", class: "btn btn-primary" %>
+  </div>
+<% end %>

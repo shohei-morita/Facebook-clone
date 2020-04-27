@@ -1,3 +1,11 @@
 <h1>記事を編集する。</h1>
 
 <%= render "form" %>
+
+<%= form_with(model: @picture, url: choose_new_or_edit, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.submit "画像を削除する", name: "delete_image", class: "btn btn-danger" %>
+  </div>
+<% end %>
+
+<%= link_to "記事一覧に戻る", pictures_path, class: "btn btn-default" %>

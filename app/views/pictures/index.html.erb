@@ -1,26 +1,37 @@
 <h1>記事一覧</h1>
 <h3><%= current_user.name %>さん、ゆっくりしていってね！</h3>
 
-<table>
-  <tr>
-    <th>Icon</th>
-    <th>タイトル</th>
-    <th>記事</th>
-    <th>投稿日時</th>
-    <th>投稿者</th>
-  </tr>
-  <% @pictures.each do |picture| %>
-  <tr>
-    <td><%= image_tag picture.image.url(:thumb) if picture.image.present? %></td>
-    <td><%= picture.title %></td>
-    <td><%= picture.content %></td>
-    <td><%= picture.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-    <td><%= picture.user.name %></td>
-    <td><%= link_to "詳細", picture_path(picture.id) %></td>
-    <% if picture.user.id == current_user.id %>
-      <td><%= link_to "編集する", edit_picture_path(picture.id) %></td>
-      <td><%= link_to "削除する", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} %></td>
+<p><%= link_to "記事作成", new_picture_path, class: "btn btn-primary" %><p>
+
+  <table class="table">
+  <% if @pictures.present? %>
+    <thead class="table-head">
+      <tr>
+        <th>Icon</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Date</th>
+        <th>User</th>
+        <th colspan="3">Functions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td><%= image_tag picture.image.url(:thumb) if picture.image.present? %></td>
+        <td><%= picture.title %></td>
+        <td><%= picture.content %></td>
+        <td><%= picture.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= picture.user.name %></td>
+        <td><%= link_to "show", picture_path(picture.id) %></td>
+        <% if picture.user.id == current_user.id %>
+          <td><%= link_to "edit", edit_picture_path(picture.id) %></td>
+          <td><%= link_to "destroy", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} , class: "btn btn-danger"%></td>
+        <% else %>
+          <td colspan="3"></td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
-  <% end %>
-</table>
+    </tbody>
+    <% end %>
+  </table>
