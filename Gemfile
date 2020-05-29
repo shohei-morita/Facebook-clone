@@ -14,8 +14,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bcrypt', '3.1.11'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog-aws'
+gem 'dotenv-rails'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
