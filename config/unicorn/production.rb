@@ -1,11 +1,12 @@
-$worker = 2
+$worker  = 2
 $timeout = 30
+#
 $app_dir = "/var/www/mimicbook/current"
-$listen = File.expand_path 'tmp/sockets/unicorn.sock', $app_dir
-$pid = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
+$listen  = File.expand_path 'tmp/sockets/unicorn.sock', $app_dir
+$pid     = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
 $std_log = File.expand_path 'log/unicorn.log', $app_dir
 
-worker_processes $worker
+worker_processes  $worker
 working_directory $app_dir
 stderr_path $std_log
 stdout_path $std_log
@@ -18,7 +19,7 @@ before_fork do |server, worker|
   old_pid = "#{server.config[:pid]}.oldbin"
   if old_pid != server.pid
     begin
-      process.kill "QUIT", File.read(old_pid).to_i
+      Process.kill "QUIT", File.read(old_pid).to_i
     rescue Errno::ENOENT, Errno::ESRCH
     end
   end

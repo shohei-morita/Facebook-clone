@@ -1,13 +1,14 @@
 lock '3.6.0'
-set :application, 'MimicBook'
+set :application, 'mimicbook'
 set :repo_url, 'https://github.com/shohei-morita/Facebook-clone.git'
+set :branch, ENV['BRANCH'] || 'master'
 set :deploy_to, '/var/www/mimicbook'
 set :linked_files, %w{.env config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 set :keep_releases, 5
 set :rbenv_ruby, '2.6.5'
 set :rbenv_type, :system
-set :log_level, :debug
+set :log_level, :info
 namespace :deploy do
   desc 'Restart application'
   task :restart do
